@@ -26,7 +26,7 @@
             //- .clearfix
 </template>
 
-<style>
+<style scoped>
 .successful-server-response-wrapper {
 	display: flex;
 	justify-content: center;
@@ -41,5 +41,8 @@
 	color: #f1f1f1;
 	padding: 20px;
 	border-radius: 3px;
+}
+.row {
+	margin-top: 23px !important;
 }
 </style>
