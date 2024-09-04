@@ -37,7 +37,7 @@
 		"bootstrap-vue": "^2.0.0",
 		"firebase": "^10.12.5",
 		"node-sass": "^9.0.0",
-		"nuxt": "^2.0.0",
+		"nuxt": "^3.12.4",
 		"sass-loader": "^8.0.2",
 		"vue-parallaxy": "^1.1.1",
 		"vue-recaptcha": "^2.0.3",
