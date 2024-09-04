@@ -38,7 +38,7 @@
 		"firebase": "^10.13.1",
 		"node-sass": "^9.0.0",
 		"nuxt": "^2.0.0",
-		"sass-loader": "^8.0.2",
+		"sass-loader": "^16.0.1",
 		"vue-parallaxy": "^1.1.1",
 		"vue-recaptcha": "^2.0.3",
 		"vue-screen-size": "^1.0.0",
