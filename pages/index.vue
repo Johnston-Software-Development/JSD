@@ -22,7 +22,6 @@ div
 <script>
 //TODO: set height of a parallax to the window height (handle on change)
 import websites from '~/components/Websites.vue'
-import apps from '~/components/Apps.vue'
 import testimonials from '~/components/Testimonials.vue'
 import Parallax from 'vue-parallaxy'
 import VueScreenSize from 'vue-screen-size'
@@ -30,7 +29,6 @@ import VueScreenSize from 'vue-screen-size'
 export default {
 	components: {
 		websites,
-		apps,
 		testimonials,
 		Parallax,
 	},
