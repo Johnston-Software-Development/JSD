@@ -1,4 +1,4 @@
-export default {
+export default defineNuxtConfig({
 	mode: 'spa',
 	/*
 	 ** Headers of the page
@@ -46,36 +46,21 @@ export default {
 	/*
 	 ** Global CSS
 	 */
-	css: [],
+	css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 	/*
 	 ** Plugins to load before mounting the App
 	 */
-	plugins: [{ src: '~/plugins/firebase.js', mode: 'client' }],
+	// plugins: [{ src: '~/plugins/firebase.js', mode: 'client' }],
 
-	/*
-	 ** Nuxt.js dev-modules
-	 */
-	buildModules: ['@nuxtjs/vuetify'],
 	/*
 	 ** Nuxt.js modules
 	 */
-	modules: [
-		// Doc: https://bootstrap-vue.js.org
-		'bootstrap-vue/nuxt',
-		'@nuxtjs/font-awesome',
-		'@nuxtjs/axios',
-		'@nuxtjs/auth-next',
-		'@nuxtjs/firebase',
-	],
+	// modules: ['@pinia/nuxt'],
 	/*
 	 ** Build configuration
 	 */
-	build: {
-		/*
-		 ** You can extend webpack config here
-		 */
-		extend(config, ctx) {},
-	},
+	build: { transpile: ['@fortawesome/vue-fontawesome'] },
+
 	axios: {
 		baseURL: 'http://localhost:3000/api', // Replace with your API base URL
 	},
@@ -137,4 +122,4 @@ export default {
 		// 	// logout: '/',
 		// },
 	},
-}
+})
