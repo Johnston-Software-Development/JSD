@@ -13280,10 +13280,10 @@ vue-router@^3.6.5:
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.6.5.tgz#95847d52b9a7e3f1361cb605c8e6441f202afad8"
   integrity sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==
 
-vue-screen-size@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/vue-screen-size/-/vue-screen-size-1.0.1.tgz#4c120ac09929b735eafe5898c6abf12ddb441895"
-  integrity sha512-FvPAQAZp235cWpceazYK3CyPXUmogJRbPwa2F34l4BiwNoCZxZIKcEgqrScpCm0pi8llPrGlHHiuM7uuQc3mHA==
+vue-screen-size@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vue-screen-size/-/vue-screen-size-2.1.0.tgz#57458cdd8fbad12f98b94277ebd856aa9d830b1d"
+  integrity sha512-q0qPNqzXlFMrpyfpfx+QNeydhgeg0lhT1/E8C4guoG2tQtLzMcpoIGW1TInnCt6CDgRLyPH7tN6BEpoY7+vYyA==
 
 vue-server-renderer@^2.7.16:
   version "2.7.16"
