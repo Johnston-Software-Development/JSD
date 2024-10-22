@@ -41,7 +41,7 @@
 		"sass-loader": "^8.0.2",
 		"vue-parallaxy": "^1.1.1",
 		"vue-recaptcha": "^2.0.3",
-		"vue-screen-size": "^2.1.0",
+		"vue-screen-size": "^1.0.0",
 		"vuelidate": "^0.7.4",
 		"@nuxtjs/vuetify": "^1.10.2",
 		"pug-plain-loader": "^1.0.0"
