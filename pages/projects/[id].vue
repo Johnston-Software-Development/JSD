@@ -104,8 +104,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
+import { mapState } from 'pinia'
+import { useMainStore } from '~/stores/index'
 export default {
 	data() {
 		return {
@@ -114,7 +114,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['jsd']),
+		...mapState(useMainStore, ['jsd']),
 		canNavigateBack() {
 			return (
 				this.selectedItemId !== null &&
@@ -132,11 +132,13 @@ export default {
 	},
 	methods: {
 		loadSelectedItem() {
+			console.log('loadSelectedItem')
 			this.selectedItem = this.jsd.find(
 				(item) => item.id === this.selectedItemId
 			)
 		},
 		navigateItem(direction) {
+			console.log('navigateItem', direction)
 			const currentIndex = this.jsd.findIndex(
 				(item) => item.id == this.selectedItemId
 			)
@@ -162,6 +164,10 @@ export default {
 		this.selectedItem = this.jsd.find(
 			(item) => item.id == this.selectedItemId
 		)
+		if (!this.selectedItem) {
+			console.log('Project not found, redirecting to 0')
+			this.$router.push('/projects/0')
+		}
 	},
 	watch: {
 		jsd() {

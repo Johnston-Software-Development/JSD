@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1>Login</h1>
-		<form @submit.prevent="login">
+		<form @submit.prevent="handleLogin">
 			<div>
 				<label for="email">Email</label>
 				<input type="email" v-model="email" id="email" />
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { useAuthStore } from '~/stores/auth'
+import { mapState, mapActions } from 'pinia'
 // TODO: handle failed login
 // TODO: Auto redirect to admin if logged in already
 export default {
@@ -25,18 +27,19 @@ export default {
 			password: '',
 		}
 	},
+	computed: {
+		...mapState(useAuthStore, ['getAuthError']),
+	},
 	methods: {
-		async login() {
+		...mapActions(useAuthStore, ['signIn']),
+		async handleLogin() {
 			try {
-				const { success, error } = await this.$store.dispatch('login', {
-					email: this.email,
-					password: this.password,
-				})
-				if (success) {
-					this.$router.push('/admin')
+				const response = await this.signIn(this.email, this.password)
+
+				if (!response) {
+					throw new Error('Invalid credentials')
 				} else {
-					console.error('Login error:', error)
-					// Handle login error
+					this.$router.push('/admin')
 				}
 			} catch (error) {
 				console.error('An error occurred:', error.message)

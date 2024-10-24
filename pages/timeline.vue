@@ -15,7 +15,7 @@
               :style="{color: e.color}"
               v-text="e.when")
           .py-4
-            //- <h2 :class="`headline font-weight-light mb-4 ${e.color}--text`">{{e.title}}</h2>
+            <h2 :class="`headline font-weight-light mb-4 ${e.color}--text`">{{e.title}}</h2>
             div {{e.what}}
     .card-header.mb-0.rounded.mt-0
       h1 Johnston Software Development founded 2020

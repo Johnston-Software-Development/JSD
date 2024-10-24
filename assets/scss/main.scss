@@ -1,0 +1,42 @@
+// Import your variables first
+@import 'variables';
+
+// Import Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Custom overrides
+html body {
+	a {
+		color: $primary !important;
+		text-decoration: none;
+
+		&:hover {
+			color: darken($primary, 25%) !important;
+		}
+	}
+	a.underline {
+		text-decoration: underline;
+	}
+
+	.text-primary {
+		color: $primary !important;
+	}
+
+	.text-secondary {
+		color: $secondary !important;
+	}
+
+	.bg-primary {
+		background-color: $primary !important;
+	}
+
+	.bg-secondary {
+		background-color: $secondary !important;
+	}
+}
+
+// Additional theme-specific overrides if needed
+:root {
+	--v-theme-primary: #{$primary};
+	--v-theme-secondary: #{$secondary};
+}

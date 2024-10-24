@@ -1,51 +1,64 @@
-<template lang="pug">
-div
-	v-parallax(
-		dark
-		:src="getImageUrl('devices.jpg')"
-		:height="$vssHeight"
-		jumbotron)
-		v-row(
-		align="center"
-		:height="$vssHeight"
-		justify="center")
-		v-col.mt-5.text-center(cols="12")
-			h1.mt-5.display-1.font-weight-thin.mb-4
-			| Web and Mobile Apps
-			h4.subheading Build your application today!
-	.container.bg-transparent
-		.row
-			websites
-	//- .container.col-12.mb-5.bg-transparent
-		testimonials.col-12
-</template>
-<script>
-//TODO: set height of a parallax to the window height (handle on change)
-import websites from '~/components/Websites.vue'
-import testimonials from '~/components/Testimonials.vue'
-import Parallax from 'vue-parallaxy'
-import VueScreenSize from 'vue-screen-size'
+<template>
+	<div>
+		<v-parallax
+			class="d-flex align-center"
+			:src="deviceImage"
+			:height="height"
+		>
+			<v-container fluid>
+				<v-row align="center" justify="center">
+					<v-col cols="12" class="text-center">
+						<h1 class="text-h2 font-weight-thin mb-4 text-primary">
+							Web and Mobile Apps
+						</h1>
+						<h4 class="text-subtitle-1">
+							Build your application today!
+						</h4>
+					</v-col>
+				</v-row>
+			</v-container>
+		</v-parallax>
 
-export default {
-	components: {
-		websites,
-		testimonials,
-		Parallax,
-	},
-	methods: {
-		getImageUrl(img) {
-			return require(`~/assets/${img}`)
-		},
-	},
-	mixins: [VueScreenSize.VueScreenSizeMixin],
+		<v-container class="bg-transparent">
+			<v-row>
+				<v-col>
+					<projects />
+				</v-col>
+			</v-row>
+		</v-container>
+	</div>
+</template>
+
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import projects from '~/components/Projects.vue'
+
+const height = ref(window?.innerHeight || 500)
+
+const updateHeight = () => {
+	height.value = window.innerHeight
 }
+
+onMounted(() => {
+	updateHeight()
+	window.addEventListener('resize', updateHeight)
+})
+
+onUnmounted(() => {
+	window.removeEventListener('resize', updateHeight)
+})
+
+// If you need deviceImage
+const deviceImage = ref(new URL('../assets/devices.jpg', import.meta.url).href)
 </script>
+
 <style scoped>
 .container {
 	padding-bottom: 20px;
 	padding-top: 20px;
 	background-color: #fff;
 }
+
 .title {
 	font-family: 'Quicksand', 'Source Sans Pro', -apple-system,
 		BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,

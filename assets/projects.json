@@ -205,5 +205,20 @@
 		"project": "Mobile-First Web App Prototype Development",
 		"url": "",
 		"id": "9"
+	},
+	{
+		"type": "web",
+		"teaser": "Builtaa a mobile-first web application prototype using NextJS, showcasing key features and functionalities within a tight deadline.",
+		"company": "",
+		"about": "",
+		"image": "../Mobile-First Web App Prototype Development.jpg",
+		"jsd": true,
+		"description": "",
+		"title": "",
+		"tech": "NextJS,Bootstrap,Ruby on Rails",
+		"dates": "",
+		"project": "Venmo of Canada",
+		"url": "",
+		"id": "10"
 	}
 ]

@@ -1,28 +1,34 @@
 <template lang="pug">
 .body-container
-	app-header
-	nuxt.body.mt-2.mb-2
-	app-footer
-	loader(:loading="loading")
+	TheHeader
+	NuxtPage.body.mb-2
+	TheFooter
+	TheLoader(:loading="loading")
 </template>
 
 <script>
-import Header from '~/components/Header.vue'
-import Footer from '~/components/Footer.vue'
-import Loader from '~/components/Loader.vue'
-import { mapState } from 'vuex'
+import { useMainStore } from '~/stores'
+import { storeToRefs } from 'pinia'
+import TheHeader from '~/components/Header.vue'
+import TheFooter from '~/components/Footer.vue'
+import TheLoader from '~/components/Loader.vue'
 
-export default {
+const store = useMainStore()
+const { loading } = storeToRefs(store)
+
+// Initialize when component mounts
+onMounted(async () => {
+})
+  export default {
+	middleware: 'auth',
 	components: {
-		appHeader: Header,
-		appFooter: Footer,
-		loader: Loader,
-	},
-	computed: {
-		...mapState(['loading']),
+		TheHeader,
+		TheFooter,
+		TheLoader,
 	},
 	async mounted() {
-		await this.$store.dispatch('nuxtClientInit')
+		console.log('mounted')
+		await store.loadProjects()
 	},
 }
 </script>

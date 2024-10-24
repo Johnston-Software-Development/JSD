@@ -2,9 +2,10 @@ import { useAuthStore } from '~/stores/auth'
 
 export default defineNuxtRouteMiddleware((to, from) => {
 	const authStore = useAuthStore()
+	console.log('authStore', authStore)
 
-	// Redirect if user is not authenticated
-	if (!authStore.user && to.path !== '/login') {
+	// Check if the route requires authentication
+	if (to.path.startsWith('/admin') && !authStore.isAuthenticated) {
 		return navigateTo('/login')
 	}
 

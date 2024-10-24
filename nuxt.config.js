@@ -1,125 +1,117 @@
 export default defineNuxtConfig({
-	mode: 'spa',
-	/*
-	 ** Headers of the page
-	 */
-	head: {
-		title: 'Johnston Software Development',
-		meta: [
-			{ charset: 'utf-8' },
-			{
-				name: 'viewport',
-				content: 'width=device-width, initial-scale=1',
-			},
-			{
-				hid: 'description',
-				name: 'description',
-				content: process.env.npm_package_description || '',
-			},
-		],
-		link: [
-			// { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-			{
-				rel: 'apple-touch-icon',
-				sizes: '180x180',
-				href: '/apple-touch-icon.png',
-			},
-			{
-				rel: 'icon',
-				type: 'image/png',
-				sizes: '32x32',
-				href: '/favicon-32x32.png',
-			},
-			{
-				rel: 'icon',
-				type: 'image/png',
-				sizes: '16x16',
-				href: '/favicon-16x16.png',
-			},
-			{ rel: 'manifest', href: '/site.webmanifest' },
-		],
-	},
-	/*
-	 ** Customize the progress-bar color
-	 */
-	loading: { color: '#fff' },
-	/*
-	 ** Global CSS
-	 */
-	css: ['@fortawesome/fontawesome-svg-core/styles.css'],
-	/*
-	 ** Plugins to load before mounting the App
-	 */
-	// plugins: [{ src: '~/plugins/firebase.js', mode: 'client' }],
+	ssr: false,
 
-	/*
-	 ** Nuxt.js modules
-	 */
-	// modules: ['@pinia/nuxt'],
-	/*
-	 ** Build configuration
-	 */
-	build: { transpile: ['@fortawesome/vue-fontawesome'] },
+	compatConfig: { MODE: 3 },
 
-	axios: {
-		baseURL: 'http://localhost:3000/api', // Replace with your API base URL
-	},
-	firebase: {
-		config: {
-			apiKey: process.env.NUXT_ENV_FIREBASE_API_KEY,
-			authDomain: process.env.NUXT_ENV_FIREBASE_AUTH_DOMAIN,
-			projectId: process.env.NUXT_ENV_FIREBASE_PROJECT_ID,
-			storageBucket: process.env.NUXT_ENV_FIREBASE_STORAGE_BUCKET,
-			messagingSenderId:
-				process.env.NUXT_ENV_FIREBASE_MESSAGING_SENDER_ID,
-			appId: process.env.NUXT_ENV_FIREBASE_APP_ID,
-			measurementId: process.env.NUXT_ENV_FIREBASE_MEASUREMENT_ID,
-		},
-		services: {
-			auth: true,
-			firestore: true,
-			storage: true,
-			database: true,
-		},
-	},
-	auth: {
-		middleware: ['~/middleware/auth.js'],
-		cookie: {
-			prefix: 'auth.',
-			// options: {
-			// 	path: '/',
-			// },
-		},
-		localStorage: {
-			prefix: 'auth.',
-		},
-		strategies: {
-			local: {
-				token: {
-					property: 'token',
-					global: true,
-					required: true,
-					type: 'Bearer',
+	app: {
+		head: {
+			title: 'Johnston Software Development',
+			meta: [
+				{ charset: 'utf-8' },
+				{
+					name: 'viewport',
+					content: 'width=device-width, initial-scale=1',
 				},
-				user: {
-					property: 'user',
-					autoFetch: true,
+				{
+					hid: 'description',
+					name: 'description',
+					content: process.env.npm_package_description || '',
 				},
-				endpoints: {
-					login: {
-						url: '/login',
-						method: 'post',
-						propertyName: 'token',
-					},
-					logout: { url: '/logout', method: 'post' },
+			],
+			link: [
+				{
+					rel: 'apple-touch-icon',
+					sizes: '180x180',
+					href: '/apple-touch-icon.png',
+				},
+				{
+					rel: 'icon',
+					type: 'image/png',
+					sizes: '32x32',
+					href: '/favicon-32x32.png',
+				},
+				{
+					rel: 'icon',
+					type: 'image/png',
+					sizes: '16x16',
+					href: '/favicon-16x16.png',
+				},
+				{ rel: 'manifest', href: '/site.webmanifest' },
+			],
+		},
+	},
+
+	// Remove loading property as it's not needed in Nuxt 3
+
+	css: [
+		'@fortawesome/fontawesome-svg-core/styles.css',
+		'bootstrap-vue-next/dist/bootstrap-vue-next.css',
+		'~/assets/scss/main.scss',
+		'vuetify/lib/styles/main.sass',
+		'@mdi/font/css/materialdesignicons.min.css',
+	],
+	router: {
+		middleware: ['auth'],
+	},
+
+	plugins: [
+		'~/plugins/firebase.js',
+		'~/plugins/init.ts',
+		{ src: '~/plugins/bootstrap.client.ts', mode: 'client' },
+	],
+
+	modules: ['@pinia/nuxt'],
+
+	// Remove bootstrap-vue-next/nuxt as we're using the plugin approach
+
+	build: {
+		transpile: [
+			'vuetify',
+			'@firebase/app',
+			'@firebase/auth',
+			'@firebase/firestore',
+		],
+		// Remove bootstrap and bootstrap-vue-next from transpile
+	},
+
+	vite: {
+		define: {
+			'process.env.DEBUG': false,
+		},
+		css: {
+			preprocessorOptions: {
+				scss: {
+					additionalData: '@import "~/assets/scss/_variables.scss";',
 				},
 			},
 		},
-		// redirect: {
-		// 	// home: '/',
-		// 	login: '/login',
-		// 	callback: '/login',
-		// 	// logout: '/',
-		// },
 	},
+
+	nitro: {
+		esbuild: {
+			options: {
+				drop: ['console', 'debugger'],
+				logOverride: {
+					ROLLUP_DOUBLE_SLASH_RESOLUTION: 'silent',
+				},
+			},
+		},
+	},
+
+	// Remove firebase and auth configs as they're not part of Nuxt 3's config
+	// These should be handled in your plugins/firebase.js file
+	runtimeConfig: {
+		public: {
+			FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+			FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+			FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
+			FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
+			FIREBASE_MESSAGING_SENDER_ID:
+				process.env.FIREBASE_MESSAGING_SENDER_ID,
+			FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
+			FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
+		},
+	},
+
+	compatibilityDate: '2024-10-23',
 })

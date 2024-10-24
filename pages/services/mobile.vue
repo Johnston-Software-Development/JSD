@@ -1,8 +1,8 @@
 <template lang="pug">
   div
     .container.col-12
-      //- .card.bg-transparent
-      h1.text-center Mobile
+      .card.bg-transparent
+        h1.text-center Mobile
     pricing
 </template>
 
