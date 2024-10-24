@@ -73,12 +73,18 @@ img.screen-shot {
 
 .card {
 	background-color: white;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-	transition: transform 0.2s, box-shadow 0.2s;
+	box-shadow:
+		0 4px 8px rgba(0, 0, 0, 0.1),
+		0 6px 20px rgba(0, 0, 0, 0.1);
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s;
 }
 
 .card:hover {
 	transform: translateY(-10px);
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.2);
+	box-shadow:
+		0 8px 16px rgba(0, 0, 0, 0.2),
+		0 12px 40px rgba(0, 0, 0, 0.2);
 }
 </style>

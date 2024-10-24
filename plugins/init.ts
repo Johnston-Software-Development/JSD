@@ -1,4 +1,4 @@
-import { useMainStore } from "~/stores"
+import { useMainStore } from '~/stores'
 
 // plugins/init.ts
 export default defineNuxtPlugin(async (nuxtApp) => {

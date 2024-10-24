@@ -17,9 +17,8 @@ const store = useMainStore()
 const { loading } = storeToRefs(store)
 
 // Initialize when component mounts
-onMounted(async () => {
-})
-  export default {
+onMounted(async () => {})
+export default {
 	middleware: 'auth',
 	components: {
 		TheHeader,
@@ -75,8 +74,15 @@ h2 {
 
 /* General Styles */
 html {
-	font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-		'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	font-family:
+		'Source Sans Pro',
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial,
+		sans-serif;
 	font-size: 16px;
 	word-spacing: 1px;
 	-ms-text-size-adjust: 100%;

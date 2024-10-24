@@ -60,8 +60,15 @@ const deviceImage = ref(new URL('../assets/devices.jpg', import.meta.url).href)
 }
 
 .title {
-	font-family: 'Quicksand', 'Source Sans Pro', -apple-system,
-		BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+	font-family:
+		'Quicksand',
+		'Source Sans Pro',
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial,
 		sans-serif;
 	display: block;
 	font-weight: 300;
