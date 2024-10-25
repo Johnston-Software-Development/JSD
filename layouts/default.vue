@@ -3,28 +3,26 @@
 	TheHeader
 	NuxtPage.body.mb-2
 	TheFooter
-	TheLoader(:loading="loading")
+	//- TheLoader(:loading="loading")
 </template>
 
 <script>
 import { useMainStore } from '~/stores'
-import { storeToRefs } from 'pinia'
+// import { storeToRefs } from 'pinia'
 import TheHeader from '~/components/Header.vue'
 import TheFooter from '~/components/Footer.vue'
 import TheLoader from '~/components/Loader.vue'
 
 const store = useMainStore()
-const { loading } = storeToRefs(store)
+// const { loading } = storeToRefs(store)
 
-// Initialize when component mounts
-onMounted(async () => {})
 export default {
-	middleware: 'auth',
 	components: {
 		TheHeader,
 		TheFooter,
 		TheLoader,
 	},
+	middleware: 'auth',
 	async mounted() {
 		console.log('mounted')
 		await store.loadProjects()
@@ -74,15 +72,8 @@ h2 {
 
 /* General Styles */
 html {
-	font-family:
-		'Source Sans Pro',
-		-apple-system,
-		BlinkMacSystemFont,
-		'Segoe UI',
-		Roboto,
-		'Helvetica Neue',
-		Arial,
-		sans-serif;
+	font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+		'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 	font-size: 16px;
 	word-spacing: 1px;
 	-ms-text-size-adjust: 100%;

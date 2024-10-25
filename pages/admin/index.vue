@@ -10,10 +10,10 @@ import { useAuthStore } from '~/stores/auth'
 import { mapState } from 'pinia'
 import Edit from '~/components/admin/Edit.vue'
 export default {
-	middleware: 'auth',
 	components: {
 		Edit,
 	},
+	middleware: 'auth',
 	computed: {
 		...mapState(useAuthStore, ['user']),
 	},

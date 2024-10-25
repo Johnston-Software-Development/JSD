@@ -22,8 +22,8 @@
 			</button>
 
 			<div
-				class="collapse navbar-collapse"
 				id="navbarNavDropdown"
+				class="collapse navbar-collapse"
 				:class="{ show: visible }"
 			>
 				<div class="navbar-nav ms-auto">
@@ -34,17 +34,17 @@
 						>Projects</nuxt-link
 					>
 					<nuxt-link
-						class="nav-item"
 						v-if="store.user"
+						class="nav-item"
 						to="/admin"
 						active-class="active"
 						>Admin</nuxt-link
 					>
 					<nuxt-link
-						class="nav-item"
 						v-if="store.user"
-						@click="handleLogout"
+						class="nav-item"
 						active-class="active"
+						@click="handleLogout"
 						>Logout</nuxt-link
 					>
 				</div>
@@ -55,10 +55,10 @@
 
 <script setup>
 import { useMainStore } from '~/stores'
-import { storeToRefs } from 'pinia'
+// import { storeToRefs } from 'pinia'
 
 const store = useMainStore()
-const { user } = storeToRefs(store)
+// const { user } = storeToRefs(store)
 
 const handleLogout = async () => {
 	await store.signOut()

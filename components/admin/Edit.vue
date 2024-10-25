@@ -17,8 +17,8 @@
 				<select
 					id="itemSelector"
 					v-model="selectedItemId"
-					@change="loadSelectedItem"
 					class="form-control"
+					@change="loadSelectedItem"
 				>
 					<option
 						v-for="item in sortedItems"
@@ -39,8 +39,8 @@
 				<div class="col">
 					<select
 						id="type"
-						class="form-select"
 						v-model="selectedItem.type"
+						class="form-select"
 					>
 						<option
 							v-for="type in availableTypes"
@@ -54,10 +54,10 @@
 			</div>
 
 			<div
-				class="row mb-3"
 				v-for="(value, key) in selectedItem"
-				:key="key"
 				v-if="key !== 'type'"
+				:key="key"
+				class="row mb-3"
 			>
 				<div class="col-3">
 					<label :for="key">
@@ -67,9 +67,9 @@
 				<div class="col">
 					<template v-if="key === 'jsd'">
 						<input
-							type="checkbox"
 							:id="key"
 							v-model="selectedItem[key]"
+							type="checkbox"
 						/>
 					</template>
 					<template
@@ -78,9 +78,9 @@
 						"
 					>
 						<textarea
-							class="form-control"
 							:id="key"
 							v-model="selectedItem[key]"
+							class="form-control"
 						></textarea>
 					</template>
 					<template v-else-if="key === 'image'">
@@ -107,9 +107,9 @@
 					<template v-else-if="key === 'tech'">
 						<div>
 							<div
-								class="row mb-2"
 								v-for="(techItem, index) in selectedItem.tech"
 								:key="index"
+								class="row mb-2"
 							>
 								<div class="col">
 									<input
@@ -142,14 +142,14 @@
 						<div class="row mb-3">
 							<div class="col">
 								<input
-									class="form-control"
-									:type="key === 'id' ? 'number' : 'text'"
 									:id="key"
 									v-model="selectedItem[key]"
+									class="form-control"
+									:type="key === 'id' ? 'number' : 'text'"
 									:disabled="key === 'id'"
 								/>
 							</div>
-							<div class="col" v-if="key === 'image'">
+							<div v-if="key === 'image'" class="col">
 								<img :src="selectedItem[key]" width="100px" />
 							</div>
 						</div>
@@ -160,16 +160,16 @@
 			<div class="d-flex justify-content-between mb-3">
 				<button
 					class="btn btn-secondary"
-					@click="navigateItem('back')"
 					:disabled="!canNavigateBack"
+					@click="navigateItem('back')"
 				>
 					Back
 				</button>
 				<button class="btn btn-primary" @click="saveItem">Save</button>
 				<button
 					class="btn btn-secondary"
-					@click="navigateItem('forward')"
 					:disabled="!canNavigateForward"
+					@click="navigateItem('forward')"
 				>
 					Forward
 				</button>
@@ -206,11 +206,6 @@ export default {
 			imageList: [],
 		}
 	},
-	mounted() {
-		this.loadItems()
-		this.loadAvailableTypes()
-		this.loadImageList()
-	},
 	computed: {
 		canNavigateBack() {
 			return (
@@ -233,6 +228,19 @@ export default {
 			return this.projects.slice().sort((a, b) => a.id - b.id)
 		},
 		...mapState(useMainStore, ['projects']),
+	},
+	watch: {
+		projects(newVal) {
+			this.selectedItemId = newVal[0]?.id || null
+			this.selectedItem = newVal.find(
+				(item) => item.id === this.selectedItemId
+			)
+		},
+	},
+	mounted() {
+		this.loadItems()
+		this.loadAvailableTypes()
+		this.loadImageList()
 	},
 	methods: {
 		...mapActions(useMainStore, ['loadProjects']),
@@ -373,14 +381,6 @@ export default {
 				this.selectedItemId = this.projects[currentIndex + 1].id
 			}
 			this.selectedItem = this.projects.find(
-				(item) => item.id === this.selectedItemId
-			)
-		},
-	},
-	watch: {
-		projects(newVal) {
-			this.selectedItemId = newVal[0]?.id || null
-			this.selectedItem = newVal.find(
 				(item) => item.id === this.selectedItemId
 			)
 		},
