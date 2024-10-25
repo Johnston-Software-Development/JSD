@@ -5,8 +5,8 @@
 				<div class="col">
 					<button
 						class="btn btn-secondary"
-						@click="navigateItem('back')"
 						:disabled="!canNavigateBack"
+						@click="navigateItem('back')"
 					>
 						Back
 					</button>
@@ -15,8 +15,8 @@
 					<select
 						id="itemSelector"
 						v-model="selectedItemId"
-						@change="loadSelectedItem"
 						class="form-select form-control"
+						@change="loadSelectedItem"
 					>
 						<option
 							v-for="item in jsd"
@@ -32,8 +32,8 @@
 				<div class="col">
 					<button
 						class="btn btn-secondary"
-						@click="navigateItem('forward')"
 						:disabled="!canNavigateForward"
+						@click="navigateItem('forward')"
 					>
 						Forward
 					</button>
@@ -55,7 +55,7 @@
 					</span>
 				</div>
 				<div class="col align-content-center">
-					<div class="row" v-if="false">
+					<div v-if="false" class="row">
 						<div class="col">
 							<span v-if="selectedItem.type">
 								<strong>Type:</strong> {{ selectedItem.type }}
@@ -104,8 +104,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
+import { mapState } from 'pinia'
+import { useMainStore } from '~/stores/index'
 export default {
 	data() {
 		return {
@@ -114,7 +114,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['jsd']),
+		...mapState(useMainStore, ['jsd']),
 		canNavigateBack() {
 			return (
 				this.selectedItemId !== null &&
@@ -130,13 +130,34 @@ export default {
 			)
 		},
 	},
+	watch: {
+		jsd() {
+			if (this.selectedItemId !== null) {
+				this.selectedItem = this.jsd.find(
+					(item) => item.id == this.selectedItemId
+				)
+			}
+		},
+	},
+	async mounted() {
+		this.selectedItemId = this.$route.params.id || 0
+		this.selectedItem = this.jsd.find(
+			(item) => item.id == this.selectedItemId
+		)
+		if (!this.selectedItem) {
+			console.log('Project not found, redirecting to 0')
+			this.$router.push('/projects/0')
+		}
+	},
 	methods: {
 		loadSelectedItem() {
+			console.log('loadSelectedItem')
 			this.selectedItem = this.jsd.find(
 				(item) => item.id === this.selectedItemId
 			)
 		},
 		navigateItem(direction) {
+			console.log('navigateItem', direction)
 			const currentIndex = this.jsd.findIndex(
 				(item) => item.id == this.selectedItemId
 			)
@@ -155,21 +176,6 @@ export default {
 			this.selectedItem = this.jsd.find(
 				(item) => item.id === this.selectedItemId
 			)
-		},
-	},
-	async mounted() {
-		this.selectedItemId = this.$route.params.id || 0
-		this.selectedItem = this.jsd.find(
-			(item) => item.id == this.selectedItemId
-		)
-	},
-	watch: {
-		jsd() {
-			if (this.selectedItemId !== null) {
-				this.selectedItem = this.jsd.find(
-					(item) => item.id == this.selectedItemId
-				)
-			}
 		},
 	},
 }

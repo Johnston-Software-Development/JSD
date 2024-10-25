@@ -1,36 +1,28 @@
 import { initializeApp } from 'firebase/app'
-import {
-	getAuth,
-	setPersistence,
-	browserSessionPersistence,
-} from 'firebase/auth'
-import {
-	getFirestore,
-	collection,
-	getDocs,
-	setDoc,
-	doc,
-	writeBatch,
-} from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
+import { getStorage } from 'firebase/storage'
 
-const firebaseConfig = {
-	apiKey: process.env.NUXT_ENV_FIREBASE_API_KEY,
-	authDomain: process.env.NUXT_ENV_FIREBASE_AUTH_DOMAIN,
-	projectId: process.env.NUXT_ENV_FIREBASE_PROJECT_ID,
-	storageBucket: process.env.NUXT_ENV_FIREBASE_STORAGE_BUCKET,
-	messagingSenderId: process.env.NUXT_ENV_FIREBASE_MESSAGING_SENDER_ID,
-	appId: process.env.NUXT_ENV_FIREBASE_APP_ID,
-	measurementId: process.env.NUXT_ENV_FIREBASE_MEASUREMENT_ID,
-}
+export default defineNuxtPlugin((nuxtApp) => {
+	const config = useRuntimeConfig()
 
-const firebaseApp = initializeApp(firebaseConfig)
-const auth = getAuth(firebaseApp)
-const firestore = getFirestore(firebaseApp)
+	const firebaseConfig = {
+		apiKey: config.public.FIREBASE_API_KEY,
+		authDomain: config.public.FIREBASE_AUTH_DOMAIN,
+		projectId: config.public.FIREBASE_PROJECT_ID,
+		storageBucket: config.public.FIREBASE_STORAGE_BUCKET,
+		messagingSenderId: config.public.FIREBASE_MESSAGING_SENDER_ID,
+		appId: config.public.FIREBASE_APP_ID,
+		measurementId: config.public.FIREBASE_MEASUREMENT_ID,
+	}
 
-setPersistence(auth, browserSessionPersistence)
-	.then(() => console.log('Firebase auth persistence set'))
-	.catch((error) => console.error('Error setting auth persistence:', error))
+	const app = initializeApp(firebaseConfig)
+	const auth = getAuth(app)
+	const firestore = getFirestore(app)
+	const storage = getStorage(app)
 
-// console.log('Firebase initialized', firestore)
-// export { auth, firestore }
-export { auth, firestore, collection, getDocs, setDoc, doc, writeBatch }
+	nuxtApp.provide('firebase', app)
+	nuxtApp.provide('auth', auth)
+	nuxtApp.provide('firestore', firestore)
+	nuxtApp.provide('storage', storage)
+})

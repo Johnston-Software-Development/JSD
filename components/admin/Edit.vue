@@ -17,8 +17,8 @@
 				<select
 					id="itemSelector"
 					v-model="selectedItemId"
-					@change="loadSelectedItem"
 					class="form-control"
+					@change="loadSelectedItem"
 				>
 					<option
 						v-for="item in sortedItems"
@@ -39,8 +39,8 @@
 				<div class="col">
 					<select
 						id="type"
-						class="form-select"
 						v-model="selectedItem.type"
+						class="form-select"
 					>
 						<option
 							v-for="type in availableTypes"
@@ -54,10 +54,10 @@
 			</div>
 
 			<div
-				class="row mb-3"
 				v-for="(value, key) in selectedItem"
-				:key="key"
 				v-if="key !== 'type'"
+				:key="key"
+				class="row mb-3"
 			>
 				<div class="col-3">
 					<label :for="key">
@@ -67,9 +67,9 @@
 				<div class="col">
 					<template v-if="key === 'jsd'">
 						<input
-							type="checkbox"
 							:id="key"
 							v-model="selectedItem[key]"
+							type="checkbox"
 						/>
 					</template>
 					<template
@@ -78,9 +78,9 @@
 						"
 					>
 						<textarea
-							class="form-control"
 							:id="key"
 							v-model="selectedItem[key]"
+							class="form-control"
 						></textarea>
 					</template>
 					<template v-else-if="key === 'image'">
@@ -92,10 +92,10 @@
 								>
 									<option
 										v-for="image in imageList"
-										:key="`../${image}`"
-										:value="`../${image}`"
+										:key="image.path"
+										:value="image.path"
 									>
-										{{ image }}
+										{{ image.name }}
 									</option>
 								</select>
 							</div>
@@ -107,9 +107,9 @@
 					<template v-else-if="key === 'tech'">
 						<div>
 							<div
-								class="row mb-2"
 								v-for="(techItem, index) in selectedItem.tech"
 								:key="index"
+								class="row mb-2"
 							>
 								<div class="col">
 									<input
@@ -142,14 +142,14 @@
 						<div class="row mb-3">
 							<div class="col">
 								<input
-									class="form-control"
-									:type="key === 'id' ? 'number' : 'text'"
 									:id="key"
 									v-model="selectedItem[key]"
+									class="form-control"
+									:type="key === 'id' ? 'number' : 'text'"
 									:disabled="key === 'id'"
 								/>
 							</div>
-							<div class="col" v-if="key === 'image'">
+							<div v-if="key === 'image'" class="col">
 								<img :src="selectedItem[key]" width="100px" />
 							</div>
 						</div>
@@ -160,16 +160,16 @@
 			<div class="d-flex justify-content-between mb-3">
 				<button
 					class="btn btn-secondary"
-					@click="navigateItem('back')"
 					:disabled="!canNavigateBack"
+					@click="navigateItem('back')"
 				>
 					Back
 				</button>
 				<button class="btn btn-primary" @click="saveItem">Save</button>
 				<button
 					class="btn btn-secondary"
-					@click="navigateItem('forward')"
 					:disabled="!canNavigateForward"
+					@click="navigateItem('forward')"
 				>
 					Forward
 				</button>
@@ -193,8 +193,9 @@ import {
 	doc,
 	writeBatch,
 } from 'firebase/firestore'
-import { firestore } from '~/plugins/firebase'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { useMainStore } from '~/stores/index'
+import { useNuxtApp } from '#app'
 
 export default {
 	data() {
@@ -204,11 +205,6 @@ export default {
 			availableTypes: [],
 			imageList: [],
 		}
-	},
-	mounted() {
-		this.loadItems()
-		this.loadAvailableTypes()
-		this.loadImageList()
 	},
 	computed: {
 		canNavigateBack() {
@@ -231,10 +227,23 @@ export default {
 		sortedItems() {
 			return this.projects.slice().sort((a, b) => a.id - b.id)
 		},
-		...mapGetters(['projects']),
+		...mapState(useMainStore, ['projects']),
+	},
+	watch: {
+		projects(newVal) {
+			this.selectedItemId = newVal[0]?.id || null
+			this.selectedItem = newVal.find(
+				(item) => item.id === this.selectedItemId
+			)
+		},
+	},
+	mounted() {
+		this.loadItems()
+		this.loadAvailableTypes()
+		this.loadImageList()
 	},
 	methods: {
-		...mapMutations(['loadProjects']),
+		...mapActions(useMainStore, ['loadProjects']),
 		exportData() {
 			const projectsJson = JSON.stringify(this.projects, null, 2)
 			const blob = new Blob([projectsJson], { type: 'application/json' })
@@ -252,20 +261,32 @@ export default {
 				(item) => item.id === this.selectedItemId
 			)
 		},
-		loadImageList() {
-			const images = require.context(
-				'~/static',
-				false,
-				/\.(png|jpe?g|gif|svg)$/
-			)
-			this.imageList = images
-				.keys()
-				.map((image) => image.replace('./', ''))
+		async loadImageList() {
+			try {
+				const images = import.meta.glob(
+					'/public/*.{png,jpg,jpeg,gif,svg}',
+					{
+						eager: true,
+						as: 'url',
+					}
+				)
+
+				this.imageList = Object.entries(images).map(
+					([fullPath, url]) => ({
+						path: url,
+						name: fullPath.split('/').pop(),
+					})
+				)
+			} catch (error) {
+				console.error('Error loading images:', error)
+				this.imageList = []
+			}
 		},
 		async loadAvailableTypes() {
+			const { $firestore } = useNuxtApp()
 			try {
 				const querySnapshot = await getDocs(
-					collection(firestore, 'projects')
+					collection($firestore, 'projects')
 				)
 				const types = new Set()
 				querySnapshot.forEach((doc) => types.add(doc.data().type))
@@ -274,41 +295,45 @@ export default {
 				console.error('Error loading types:', error)
 			}
 		},
-		loadSelectedItem() {
-			this.selectedItem = this.projects.find(
-				(item) => item.id === this.selectedItemId
-			)
-		},
 		async saveItem() {
+			const { $firestore } = useNuxtApp()
 			if (!this.selectedItem) return
 			try {
 				await setDoc(
-					doc(firestore, 'projects', this.selectedItem.id.toString()),
+					doc(
+						$firestore,
+						'projects',
+						this.selectedItem.id.toString()
+					),
 					this.selectedItem
 				)
-				// TODO: add success message/toast
 				console.log('Item saved:', this.selectedItem)
 			} catch (error) {
 				console.error('Error saving item:', error)
 			}
 		},
 		async saveAll() {
+			const { $firestore } = useNuxtApp()
 			try {
-				const batch = writeBatch(firestore)
+				const batch = writeBatch($firestore)
 				this.projects.forEach((item) => {
 					const docRef = doc(
-						firestore,
+						$firestore,
 						'projects',
 						item.id.toString()
 					)
 					batch.set(docRef, item)
 				})
 				await batch.commit()
-				// TODO: add success message/toast
 				console.log('All items saved')
 			} catch (error) {
 				console.error('Error saving all items:', error)
 			}
+		},
+		loadSelectedItem() {
+			this.selectedItem = this.projects.find(
+				(item) => item.id === this.selectedItemId
+			)
 		},
 		addItem() {
 			const newItem = {
@@ -338,7 +363,6 @@ export default {
 		},
 		addTech() {
 			if (this.selectedItem.tech == '') this.selectedItem.tech = []
-
 			this.selectedItem.tech.push('')
 		},
 		removeTech(index) {
@@ -357,14 +381,6 @@ export default {
 				this.selectedItemId = this.projects[currentIndex + 1].id
 			}
 			this.selectedItem = this.projects.find(
-				(item) => item.id === this.selectedItemId
-			)
-		},
-	},
-	watch: {
-		projects(newVal) {
-			this.selectedItemId = newVal[0]?.id || null
-			this.selectedItem = newVal.find(
 				(item) => item.id === this.selectedItemId
 			)
 		},

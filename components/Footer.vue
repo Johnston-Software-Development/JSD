@@ -1,14 +1,12 @@
 <template lang="pug">
 footer.d-flex.justify-content-around.social-footer.m-0
-  .social-footer-icons        
-    //- a.col-sm-3(href="https://www.facebook.com/DJDesign.ca")
-      i.fa.fa-facebook(aria-hidden="true")
-    a.col-sm-3(href="https://github.com/derekjj")
-      i.fa.fa-github(aria-hidden="true")
-    a.col-sm-3(href="https://www.linkedin.com/company/johnston-software-development")
-      i.fa.fa-linkedin(aria-hidden="true")
-    router-link.col-sm-3(to="/contact")
-      i.fa.fa-address-card-o(aria-hidden="true")
+  .social-footer-icons
+    a.p-2.col-sm-3.text-secondary(href="https://github.com/derekjj")
+      font-awesome-icon(aria-hidden="true" :icon="['fab', 'github']")
+    a.p-2.col-sm-3.text-secondary(href="https://www.linkedin.com/company/johnston-software-development")
+      font-awesome-icon(aria-hidden="true" :icon="['fab', 'linkedin']")
+    router-link.p-2.col-sm-3.text-secondary(to="/contact")
+      font-awesome-icon(aria-hidden="true" :icon="['fa', 'address-card']")
       
 </template>
 

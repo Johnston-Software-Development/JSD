@@ -1,12 +1,13 @@
 <template>
 	<div></div>
 </template>
-<script lang="ts">
-import { mapGetters } from 'vuex'
+<script>
+import { mapState } from 'pinia'
+import { useMainStore } from '~/stores/index'
 
 export default {
 	computed: {
-		...mapGetters(['jsd']),
+		...mapState(useMainStore, ['jsd']),
 	},
 	watch: {
 		jsd(val) {

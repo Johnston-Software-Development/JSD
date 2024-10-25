@@ -1,49 +1,76 @@
-<template lang="pug">
-div
-  b-navbar(toggleable="sm" type="dark" variant="success" fixed="top")
-    
-    b-navbar-brand.d-none.d-sm-block(to="/") Johnston Software Development
-    b-navbar-brand.d-sm-none(to="/") JS Development
+<template>
+	<div class="bg-success px-2">
+		<nav class="navbar navbar-expand-sm navbar-dark" fixed="top">
+			<nuxt-link class="navbar-brand d-sm-block d-none" to="/"
+				>Johnston Software Development</nuxt-link
+			>
+			<nuxt-link class="navbar-brand d-sm-none" to="/"
+				>JS Development</nuxt-link
+			>
 
-    b-navbar-toggle(target="nav-collapse")
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+				@click="visible = !visible"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-    b-collapse(id="nav-collapse" is-nav)
-      b-navbar-nav.ml-auto
-        b-nav-item(to="/projects",
-                  activeClass="active") Projects
-        //- b-nav-item(to="/timeline",
-        //-           activeClass="active") Timeline
-        //- b-nav-item-dropdown(text="Services" right)
-          b-dropdown-item(to="/services/consulting",
-                          activeClass="active") Consulting
-          b-dropdown-item(to="/services/web",
-                          activeClass="active") Web
-          b-dropdown-item(to="/services/mobile",
-                          activeClass="active") Mobile
-        b-nav-item(to="/admin",
-                  activeClass="active"
-                  v-if="$store.state.user") Admin
-        b-nav-item( @click="logout",
-                  activeClass="active"
-                  v-if="$store.state.user") Logout
+			<div
+				id="navbarNavDropdown"
+				class="collapse navbar-collapse"
+				:class="{ show: visible }"
+			>
+				<div class="navbar-nav ms-auto">
+					<nuxt-link
+						class="nav-item"
+						to="/projects"
+						active-class="active"
+						>Projects</nuxt-link
+					>
+					<nuxt-link
+						v-if="store.user"
+						class="nav-item"
+						to="/admin"
+						active-class="active"
+						>Admin</nuxt-link
+					>
+					<nuxt-link
+						v-if="store.user"
+						class="nav-item"
+						active-class="active"
+						@click="handleLogout"
+						>Logout</nuxt-link
+					>
+				</div>
+			</div>
+		</nav>
+	</div>
 </template>
-<script>
-export default {
-	methods: {
-		logout() {
-			this.$store.dispatch('logout')
-		},
-	},
+
+<script setup>
+import { useMainStore } from '~/stores'
+// import { storeToRefs } from 'pinia'
+
+const store = useMainStore()
+// const { user } = storeToRefs(store)
+
+const handleLogout = async () => {
+	await store.signOut()
 }
 </script>
+
 <style scoped>
 .dropdown-menu {
 	background-color: #28a745 !important;
 }
 .hoverable:hover {
-	-webkit-box-shadow: none;
 	box-shadow: 0px 2px 2px 2px #cccccc;
-	-webkit-transition: all 0.8s ease-in-out;
 	transition: all 0.8s ease-in-out;
 }
 </style>

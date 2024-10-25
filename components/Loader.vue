@@ -1,5 +1,5 @@
 <template>
-	<div class="loader-overlay" v-if="loading">
+	<div v-if="loading" class="loader-overlay">
 		<div class="loader"></div>
 	</div>
 </template>

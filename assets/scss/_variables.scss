@@ -1,0 +1,40 @@
+// assets/scss/_variables.scss
+
+// 1. Define actual color values first
+$primary: #00ff48;
+$secondary: #000;
+
+// 2. Create RGB values
+$primary-rgb: red($primary), green($primary), blue($primary);
+$secondary-rgb: red($secondary), green($secondary), blue($secondary);
+
+// 3. Link specific variables
+$link-color: $primary;
+$link-hover-color: darken($primary, 25%);
+$link-decoration: none; // Remove underline
+$link-shade-percentage: 25%;
+
+// 4. Define RGB values for links
+$link-color-rgb: $primary-rgb;
+
+// 3. Create RGB values
+$primary-rgb: red($primary), green($primary), blue($primary);
+$secondary-rgb: red($secondary), green($secondary), blue($secondary);
+
+// 4. Import Bootstrap functions for any mixins you might need
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';
+
+// 5. After Bootstrap imports, set CSS custom properties
+:root {
+	--bs-primary: #{$primary};
+	--bs-primary-rgb: #{$primary-rgb};
+	--bs-secondary: #{$secondary};
+	--bs-secondary-rgb: #{$secondary-rgb};
+	--bs-link-color: #{$link-color};
+	--bs-link-hover-color: #{$link-hover-color};
+}

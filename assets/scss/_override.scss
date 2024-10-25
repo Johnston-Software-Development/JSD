@@ -1,0 +1,27 @@
+// Most specific selector to override Bootstrap
+html body {
+	.text-primary {
+		color: var(--bs-primary) !important;
+	}
+
+	.text-secondary {
+		color: var(--bs-secondary) !important;
+	}
+
+	.bg-primary {
+		background-color: var(--bs-primary) !important;
+	}
+
+	.bg-secondary {
+		background-color: var(--bs-secondary) !important;
+	}
+
+	// Override any RGB variations
+	.text-primary-rgb {
+		color: rgba(var(--bs-primary-rgb), 1) !important;
+	}
+
+	.text-secondary-rgb {
+		color: rgba(var(--bs-secondary-rgb), 1) !important;
+	}
+}
