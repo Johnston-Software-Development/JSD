@@ -51,7 +51,7 @@
 		"nuxt": "3.13.2",
 		"pinia": "^2.2.6",
 		"pug-plain-loader": "^1.0.0",
-		"sass": "^1.80.5",
+		"sass": "^1.80.6",
 		"tslib": "^2.7.0",
 		"vue-parallaxy": "^1.1.1",
 		"vue-screen-size": "^2.1.0",
