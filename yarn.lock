@@ -3345,10 +3345,10 @@ boolbase@^1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
-bootstrap-vue-next@^0.25.10:
-  version "0.25.10"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue-next/-/bootstrap-vue-next-0.25.10.tgz#0ac10deb1a72218a74c91c5e15411acd3aeb63fa"
-  integrity sha512-6Q/VPkc1y0l/Go8I0SUWl++4d9WNf5UxqMkyoFDBeETyAA0elMOlhug67WbJXhWAmRuOmNwHxCZW8B944hAq4A==
+bootstrap-vue-next@^0.25.13:
+  version "0.25.13"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue-next/-/bootstrap-vue-next-0.25.13.tgz#f496a766aa8746881c55f86f88e8ab6e48bc2c11"
+  integrity sha512-3cl0RS3wNSevrbwxOcwAHHP23/6+4Lcx5xsgUtvVDpPu1zQAN3dH+DF1+/qOcmOP2TK0QAjgcnj6JoG04aIXfQ==
 
 bootstrap@^5.3.3:
   version "5.3.3"
