@@ -1,1 +1,0 @@
-import{p as t}from"./w0VMwxBf.js";import{m as s,c,a as e,b as r,o as a,_ as i}from"./5xLWSqEt.js";function p(m,o,d,u,_,f){const n=s("pricing");return a(),c("div",null,[o[0]||(o[0]=e("div",{class:"container col-12"},[e("h1",{class:"text-center"},"Consulting")],-1)),r(n)])}const l={components:{pricing:t}},$=i(l,[["render",p]]);export{$ as default};
