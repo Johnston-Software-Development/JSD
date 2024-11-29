@@ -29,7 +29,7 @@
 		"hooks": "yarn lintfix"
 	},
 	"dependencies": {
-		"@bootstrap-vue-next/nuxt": "^0.26.2",
+		"@bootstrap-vue-next/nuxt": "^0.26.3",
 		"@firebase/auth": "^1.7.8",
 		"@fortawesome/fontawesome-svg-core": "^6.7.1",
 		"@fortawesome/free-brands-svg-icons": "^6.7.1",
