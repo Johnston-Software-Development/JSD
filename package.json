@@ -76,7 +76,7 @@
 		"pug": "^3.0.3",
 		"sass-loader": "^16.0.3",
 		"typescript": "5.7.2",
-		"vitest": "^2.1.6",
+		"vitest": "^2.1.8",
 		"vue-eslint-parser": "^9.4.3",
 		"vue-jest": "^4.0.0-0"
 	}
