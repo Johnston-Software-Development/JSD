@@ -469,10 +469,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bootstrap-vue-next/nuxt@^0.26.10":
-  version "0.26.10"
-  resolved "https://registry.yarnpkg.com/@bootstrap-vue-next/nuxt/-/nuxt-0.26.10.tgz#dad10d141d51f9e0734b30ceca99bad8cabd4d4e"
-  integrity sha512-wUxTYIosOKtkVMkJ6S8HFAVSP8aHU7mz7v/i96ENknCB73DWNpo33AfhbLkt+JJahhW1f4vIQG2J6UdtMui/Hw==
+"@bootstrap-vue-next/nuxt@^0.26.15":
+  version "0.26.15"
+  resolved "https://registry.yarnpkg.com/@bootstrap-vue-next/nuxt/-/nuxt-0.26.15.tgz#6c3766597376fcc7f0a2063f6fa23533cd6b0cb0"
+  integrity sha512-94iUko/xGOhwh90yUI596PB213c5orxFuDIAAjH9UYgL9hvvK9vY238dXGyPNWjqeCE9tinMs2FRM/eApvtMWg==
   dependencies:
     "@nuxt/kit" "^3.14.159"
 
