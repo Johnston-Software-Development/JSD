@@ -1,0 +1,1 @@
+import{p as t}from"./Cfgp4Q1s.js";import{m as s,c as r,a as o,b as c,o as a,_ as p}from"./BSxXgHRW.js";function i(m,e,d,_,f,u){const n=s("pricing");return a(),r("div",null,[e[0]||(e[0]=o("div",{class:"container col-12"},[o("h1",{class:"text-center"},"Web")],-1)),c(n)])}const l={components:{pricing:t}},b=p(l,[["render",i]]);export{b as default};
