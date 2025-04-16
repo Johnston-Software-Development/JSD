@@ -1,1 +1,0 @@
-import{_ as s,q as e,c as o,k as r,o as c}from"./WTYyy4dH.js";const i={computed:{...e(r,["jsd"])},watch:{jsd(t){t&&t.length>0&&this.$router.push("/projects/"+t[0].id)}},mounted(){this.jsd&&this.jsd.length>0&&this.$router.push("/projects/"+this.jsd[0].id)}};function n(t,d,a,p,h,u){return c(),o("div")}const f=s(i,[["render",n]]);export{f as default};
