@@ -493,12 +493,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bootstrap-vue-next/nuxt@^0.26.30":
-  version "0.26.30"
-  resolved "https://registry.yarnpkg.com/@bootstrap-vue-next/nuxt/-/nuxt-0.26.30.tgz#bf822d649c9c3e31477c437aac21bc7ea2dfe17f"
-  integrity sha512-1O4b8VgfbA0pMPtD2WsKdtuteo5786ia+UzMEbVYM1pVrTa72cszx2Kr25ib129vM3wDFh6rGE/0ndpz+Rlo4w==
+"@bootstrap-vue-next/nuxt@^0.28.6":
+  version "0.28.6"
+  resolved "https://registry.yarnpkg.com/@bootstrap-vue-next/nuxt/-/nuxt-0.28.6.tgz#8530a1c6f8225bb9213f71c964f75536cf58169e"
+  integrity sha512-wYovSp6J+ki3LLc4d8shu1NjorEO06ngOs9QmpgzSXhH1KRb/EkoMEJnJsFL5EqvKuRpiQFc2fqdYWOHUIv7uA==
   dependencies:
-    "@nuxt/kit" "^3.14.159"
+    "@nuxt/kit" "^3.16.1"
 
 "@clack/core@0.4.1":
   version "0.4.1"
@@ -1758,7 +1758,7 @@
   optionalDependencies:
     ipx "^2.1.0"
 
-"@nuxt/kit@3.16.2", "@nuxt/kit@^3.14.159", "@nuxt/kit@^3.14.1592", "@nuxt/kit@^3.15.1", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.16.1", "@nuxt/kit@^3.9.0":
+"@nuxt/kit@3.16.2", "@nuxt/kit@^3.14.1592", "@nuxt/kit@^3.15.1", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.16.1", "@nuxt/kit@^3.9.0":
   version "3.16.2"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.16.2.tgz#9fbb2ef3bd9ebeb499b4cc5215e2f857c54b75d7"
   integrity sha512-K1SAUo2vweTfudKZzjKsZ5YJoxPLTspR5qz5+G61xtZreLpsdpDYfBseqsIAl5VFLJuszeRpWQ01jP9LfQ6Ksw==
@@ -3405,10 +3405,10 @@ boolbase@^1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
-bootstrap-vue-next@^0.26.30:
-  version "0.26.30"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue-next/-/bootstrap-vue-next-0.26.30.tgz#19d2472a57497d99de02eb96930e691639003318"
-  integrity sha512-7AhqBMjGKKW/vS6D2qva9uZOjiOVgmyvCroYaBeppRsmpqoeWesWvfZ0AFhky+8QDI/A9gWlNOTHapHXLZ55vA==
+bootstrap-vue-next@^0.28.6:
+  version "0.28.6"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue-next/-/bootstrap-vue-next-0.28.6.tgz#537165a5d1cc885d4d7abdb59d0efe8613e218b9"
+  integrity sha512-3uxq3MFA/5SRpG+cAA7qmTn3HAbre1Q2qf8xoBG3Z320yHn4tPoo7Mc42lotk/qlrgPbLsMFl7pmd5hpwPJiag==
 
 bootstrap@^5.3.3:
   version "5.3.3"
