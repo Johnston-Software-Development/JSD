@@ -44,7 +44,7 @@
 		"@types/bootstrap": "^5.2.10",
 		"@vueuse/core": "^12.8.2",
 		"axios": "^1.8.4",
-		"bootstrap": "^5.3.3",
+		"bootstrap": "^5.3.7",
 		"bootstrap-vue-next": "^0.26.30",
 		"firebase": "^11.2.0",
 		"node-sass": "^9.0.0",
