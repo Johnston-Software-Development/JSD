@@ -1,1 +1,0 @@
-import{p as t}from"./DOnqUKDj.js";import{c as s,a as o,b as r,g as c,o as a,_ as p}from"./B2-_uuJ0.js";function i(m,e,d,_,f,u){const n=c("pricing");return a(),s("div",null,[e[0]||(e[0]=o("div",{class:"container col-12"},[o("h1",{class:"text-center"},"Web")],-1)),r(n)])}const l={components:{pricing:t}},$=p(l,[["render",i]]);export{$ as default};
