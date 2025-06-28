@@ -1,0 +1,1 @@
+import{p as t}from"./CAa8M1cp.js";import{c as s,a as e,b as c,g as r,o as a,_ as i}from"./DxhpuS4d.js";function p(m,o,d,u,_,f){const n=r("pricing");return a(),s("div",null,[o[0]||(o[0]=e("div",{class:"container col-12"},[e("h1",{class:"text-center"},"Consulting")],-1)),c(n)])}const l={components:{pricing:t}},$=i(l,[["render",p]]);export{$ as default};
